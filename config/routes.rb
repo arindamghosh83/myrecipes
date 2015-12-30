@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#home'
+  get '/home', to: 'pages#home'
   #get '/home', to: 'pages#home'
   #get '/recipes', to: 'recipes#index'
   #get '/recipes/new', to: 'recipes#new', as: 'new_recipe'
@@ -9,7 +10,11 @@ Rails.application.routes.draw do
   #get '/recipes/:id', to: 'recipes#show', as: 'recipe'
   #delete '/recipes/:id', to: 'recipes#destroy'
   
-  resources :recipes
+  resources :recipes do
+    member do
+      post 'like'
+    end
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
